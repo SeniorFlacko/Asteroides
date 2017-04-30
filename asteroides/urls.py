@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from unapp.views import planetas
+from django.views.generic import TemplateView
+from unapp.views import AsteroideListView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^planetas/$', planetas, name='planetas'),
+    url(r'^$',TemplateView.as_view(template_name ='unapp/index.html')),
+    url(r'^asteroides/$',AsteroideListView.as_view(), name='asteroides'),
 ]
