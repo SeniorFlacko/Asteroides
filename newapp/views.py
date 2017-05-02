@@ -14,7 +14,7 @@ from django.views.generic.dates import (
 # Create your views here.
 from datetime import date
 import requests
-from models import Asteroide
+from newapp.models import Asteroide
 
 class AsteroideDetailView(DetailView):
     model = Asteroide
@@ -56,14 +56,15 @@ class AsteroideTodayArchiveView(TodayArchiveView):
         is_potentially_hazardous_asteroid = neo[str(hoy)][i]['is_potentially_hazardous_asteroid']
         nasa_jpl_url = neo[str(hoy)][i]['nasa_jpl_url']
         asteroide = Asteroide.objects.create(
-            nombre = name,
-            diametro_min =  estimated_diameter_min,
-            diametro_max =  estimated_diameter_max,
-            fecha = hoy,
-            url = nasa_jpl_url,
-            is_dangerous = is_potentially_hazardous_asteroid,
+        nombre = name,
+        diametro_min =  estimated_diameter_min,
+        diametro_max =  estimated_diameter_max,
+        fecha = hoy,
+        url = nasa_jpl_url,
+        is_dangerous = is_potentially_hazardous_asteroid,
         )
-    asteroide.save()
+        asteroide.save()
+
     queryset = Asteroide.objects.all()
     date_field = "fecha"
     allow_future = True

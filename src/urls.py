@@ -27,12 +27,13 @@ from newapp.views import (AsteroideYearArchiveView,
 from newapp.models import Asteroide
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^(?P<slug>[-\w]+)/$', AsteroideDetailView.as_view(), name='asteroide-detail'),
+    #url(r'^(?P<slug>[-\w]+)/$', AsteroideDetailView.as_view(), name='asteroide-detail'),
+    url(r'^$',AsteroideTodayArchiveView.as_view(),name="index"),
     url(r'^archive/$',ArchiveIndexView.as_view(model=Asteroide, date_field="fecha"),name="asteroide_archive"),
     url(r'^(?P<year>[0-9]{4})/$',AsteroideYearArchiveView.as_view(),name="asteroide_year_archive"),
     url(r'^(?P<year>[0-9]{4})/(?P<month>[0-9]+)/$',AsteroideMonthArchiveView.as_view(month_format='%m'),name="archive_month_numeric"),
     url(r'^(?P<year>[0-9]{4})/week/(?P<week>[0-9]+)/$',AsteroideWeekArchiveView.as_view(),name="archive_week"),
-    url(r'^(?P<year>[0-9]{4})/(?P<month>[-\w]+)/(?P<day>[0-9]+)/$',AsteroideDayArchiveView.as_view(),name="archive_day"),
+    url(r'^(?P<year>[0-9]{4})/(?P<month>[0-9]+)/(?P<day>[0-9]+)/$',AsteroideDayArchiveView.as_view(month_format='%m'),name="archive_day"),
     url(r'^today/$',AsteroideTodayArchiveView.as_view(),name="archive_today"),
-    url(r'^(?P<year>[0-9]{4})/(?P<month>[-\w]+)/(?P<day>[0-9]+)/(?P<pk>[0-9]+)/$',DateDetailView.as_view(model=Asteroide, date_field="fecha"),name="archive_date_detail"),
+    url(r'^(?P<year>[0-9]{4})/(?P<month>[0-9]+)/(?P<day>[0-9]+)/(?P<pk>[0-9]+)/$',DateDetailView.as_view(model=Asteroide,month_format='%m', date_field="fecha"),name="archive_date_detail"),
 ]
