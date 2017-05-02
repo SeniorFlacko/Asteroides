@@ -8,7 +8,7 @@
     <h1>All Asteroides for {{ year|date:"Y" }}</h1>
     {% for obj in object_list %}
         <p>
-            {{ obj.title }} - {{ obj.fecha|date:"F j, Y" }}
+            {{ obj.nombre }} - {{ obj.fecha|date:"F j, Y" }}
         </p>
     {% endfor %}
 </div>
